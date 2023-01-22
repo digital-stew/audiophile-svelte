@@ -1,0 +1,18 @@
+@font-face {
+	font-family: Manrope;
+	src: url('/fonts/Manrope.ttf');
+}
+:root {
+	--primary: #d87d4a;
+	--active: #fbaf85;
+}
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: Manrope;
+	margin: 0;
+	padding: 0;
+}
