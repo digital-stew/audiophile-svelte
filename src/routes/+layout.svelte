@@ -2,6 +2,7 @@
 	import './styles.css';
 	import Navbar from '../lib/Navbar.svelte';
 	import Footer from '../lib/Footer.svelte';
+	console.log('layout.svelte');
 </script>
 
 <main data-sveltekit-preload-data style="--mobile: max-width: 480px">
