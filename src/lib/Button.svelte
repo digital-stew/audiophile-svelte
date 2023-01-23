@@ -1,5 +1,6 @@
 <script lang="ts">
 	export let version = 2;
+	export let shopping = false;
 </script>
 
 <button
@@ -10,7 +11,7 @@
 		: version === 3
 		? 'btn btn3'
 		: null}
-	on:click>{version === 3 ? 'shop' : 'see product'}</button
+	on:click>{version === 3 ? 'shop' : shopping === true ? 'add to cart' : 'see product'}</button
 >
 
 <style>

@@ -3,15 +3,23 @@
 	import type IData from '../../types/Idata';
 	export let data: IData;
 	export let reverse = false;
-	// export let desktopImage: string;
-	// export let tabletImage: string;
-	// export let mobileImage: string;
+	let shopping = true;
+	let cartAmount = 1;
+	function click() {
+		console.log('clicking');
+	}
+	function addToCartAmount() {
+		cartAmount++;
+	}
+	function subFromCartAmount() {
+		if (cartAmount <= 1) return;
+		cartAmount--;
+	}
 </script>
 
 <section class:card__reverse={reverse} class="card">
 	<div class="card__image ">
 		<picture>
-			<!--width <1000px ? -->
 			<source srcset={'/' + data.categoryImage.mobile} media="(max-width: 481px)" />
 			<source srcset={'/' + data.categoryImage.tablet} media="(max-width: 769px)" />
 			<img src={'/' + data.categoryImage.desktop} alt="hero" />
@@ -29,9 +37,24 @@
 		<div class="card__data__body">
 			{data.description}
 		</div>
-		<div class="card__button">
-			<Button version={1} />
-		</div>
+		{#if shopping}
+			<div class="card__data__price">
+				{data.price}
+			</div>
+
+			<div class="card__data__shopping-buttons">
+				<span class="card__data__shopping-buttons__amount">
+					<button on:click={subFromCartAmount}>-</button>
+					<span class="card__data__shopping-buttons__value">{cartAmount}</span>
+					<button on:click={addToCartAmount}>+</button>
+				</span>
+				<span><Button version={1} {shopping} on:click={click} /></span>
+			</div>
+		{:else}
+			<div>
+				<Button version={1} />
+			</div>
+		{/if}
 	</div>
 </section>
 
@@ -109,4 +132,39 @@
 		mix-blend-mode: normal;
 		opacity: 0.5;
 	}
+	.card__data__shopping-buttons {
+		display: flex;
+	}
+	.card__data__shopping-buttons__amount {
+		background-color: #f1f1f1;
+		/* padding: 1rem; */
+		width: 120px;
+		display: inline-block;
+		height: 48px;
+		display: flex;
+		position: relative;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+	.card__data__shopping-buttons__value {
+		display: grid;
+		place-items: center;
+	}
+	.card__data__shopping-buttons__amount > * {
+		/* background-color: red; */
+		width: 33%;
+		height: 100%;
+	}
+	.card__data__shopping-buttons__amount button {
+		border: none;
+		background-color: transparent;
+		cursor: pointer;
+	}
+	/* .card__data__price {
+		display: none;
+	}
+	.card__data__price--show {
+		display: block;
+	} */
 </style>
