@@ -4,7 +4,7 @@
 	import Footer from '../lib/Footer.svelte';
 </script>
 
-<main data-sveltekit-preload-data="hover" style="--mobile: max-width: 480px">
+<main data-sveltekit-preload-data style="--mobile: max-width: 480px">
 	<Navbar />
 	<slot />
 	<Footer />
