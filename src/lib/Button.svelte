@@ -4,13 +4,10 @@
 </script>
 
 <button
-	class={version === 1
-		? 'btn btn1'
-		: version === 2
-		? 'btn btn2'
-		: version === 3
-		? 'btn btn3'
-		: null}
+	class="btn"
+	class:btn1={version === 1}
+	class:btn2={version === 2}
+	class:btn3={version === 3}
 	on:click>{version === 3 ? 'shop' : shopping === true ? 'add to cart' : 'see product'}</button
 >
 

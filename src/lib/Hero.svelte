@@ -9,9 +9,7 @@
 	import type IData from '../../types/Idata';
 	import Button from './Button.svelte';
 	export let data: IData[];
-	function click() {
-		console.log('click');
-	}
+	import { goto } from '$app/navigation';
 </script>
 
 <section class="heroSection">
@@ -36,7 +34,7 @@
 			enthusiast
 		</div>
 		<div class="button">
-			<Button version={1} on:click={click} />
+			<Button version={1} on:click={() => goto('/product/' + data[3].slug)} />
 		</div>
 	</aside>
 </section>

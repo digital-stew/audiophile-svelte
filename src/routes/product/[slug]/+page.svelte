@@ -4,18 +4,19 @@
 	import { afterNavigate } from '$app/navigation';
 	import type IData from '../../../../types/Idata';
 	import LinkBar from '$lib/LinkBar.svelte';
+	import ProductDetails from './ProductDetails.svelte';
+	import ImageGrid from './ImageGrid.svelte';
 	/** @type {import('./$types').PageData} */
-	export let data: { res: IData[] };
-	$: productArray = data.res;
-	afterNavigate(() => {
-		productArray = data.res;
-	});
+	export let data: { res: IData };
+	console.log(data);
 </script>
 
-{#each productArray as product, index (product.id)}
-	<ProductCard data={product} reverse={index % 2 ? true : false} />
-{/each}
+<ProductCard data={data.res} shopping={true} />
+<ProductDetails data={data.res} />
+<ImageGrid data={data.res} />
+
 <LinkBar />
+
 <About />
 
 <style>

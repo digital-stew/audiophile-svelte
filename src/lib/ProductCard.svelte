@@ -1,12 +1,18 @@
 <script lang="ts">
+	// import Cart, { add } from './Cart.svelte';
+	import { addItem } from '$lib/cart';
+	import { browser } from '$app/environment';
 	import Button from '$lib/Button.svelte';
 	import type IData from '../../types/Idata';
+	import { goto } from '$app/navigation';
 	export let data: IData;
 	export let reverse = false;
-	let shopping = true;
+	export let shopping = false;
 	let cartAmount = 1;
 	function click() {
 		console.log('clicking');
+
+		addItem(data.id, data.name, data.price, cartAmount);
 	}
 	function addToCartAmount() {
 		cartAmount++;
@@ -52,7 +58,7 @@
 			</div>
 		{:else}
 			<div>
-				<Button version={1} />
+				<Button version={1} on:click={() => goto('/product/' + data.slug)} />
 			</div>
 		{/if}
 	</div>

@@ -5,7 +5,9 @@
 	import shoppingCartImg from './assets/shared/desktop/icon-cart.svg';
 	import NavLinks from './NavLinks.svelte';
 	import hamburgerIcon from '$assetsServer/shared/tablet/icon-hamburger.svg';
+	import Cart from './Cart.svelte';
 	let showLinks = false;
+	export let showCart = false;
 	function toggleShow() {
 		showLinks = !showLinks;
 	}
@@ -19,8 +21,14 @@
 	<div class="nav__links" class:nav__links--show={showLinks}>
 		<NavLinks />
 	</div>
-	<div class="nav__shopping-cart"><img src={shoppingCartImg} alt="shopping cart" /></div>
+	<!-- double click bug here -->
+	<button class="nav__shopping-cart" on:click={() => (showCart = !showCart)}>
+		<img src={shoppingCartImg} alt="shopping cart" /></button
+	>
 </nav>
+{#if showCart}
+	<Cart showCart />
+{/if}
 
 <style>
 	nav {
@@ -48,6 +56,10 @@
 	.nav__hamburger:active {
 		border: none;
 		background-color: transparent;
+	}
+	.nav__shopping-cart {
+		all: unset;
+		cursor: pointer;
 	}
 	@media (max-width: 768px) {
 		nav {

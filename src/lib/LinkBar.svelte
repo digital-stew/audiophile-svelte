@@ -3,23 +3,24 @@
 	import speakerImage from '$assetsServer/shared/desktop/image-category-thumbnail-speakers.png';
 	import earphonesImage from '$assetsServer/shared/desktop/image-category-thumbnail-earphones.png';
 	import Button from '$lib/Button.svelte';
+	import { goto } from '$app/navigation';
 </script>
 
 <nav>
 	<div>
-		<img src={headphonesImage} alt="earphones" />
+		<img src={headphonesImage} alt="headphones" />
 		headphones
-		<Button version={3} />
+		<Button version={3} on:click={() => goto('/products/headphones')} />
 	</div>
 	<div>
 		<img src={speakerImage} alt="speaker" />
 		speakers
-		<Button version={3} />
+		<Button version={3} on:click={() => goto('/products/speakers')} />
 	</div>
 	<div>
 		<img src={earphonesImage} alt="earphones" />
 		earphones
-		<Button version={3} />
+		<Button version={3} on:click={() => goto('/products/earphones')} />
 	</div>
 </nav>
 
