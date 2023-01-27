@@ -8,8 +8,15 @@
 	import Cart from './Cart.svelte';
 	let showLinks = false;
 	export let showCart = false;
+
 	function toggleShow() {
 		showLinks = !showLinks;
+	}
+	function openModal() {
+		showCart = true;
+	}
+	function closeModal() {
+		showCart = false;
 	}
 </script>
 
@@ -21,14 +28,13 @@
 	<div class="nav__links" class:nav__links--show={showLinks}>
 		<NavLinks />
 	</div>
-	<!-- double click bug here -->
-	<button class="nav__shopping-cart" on:click={() => (showCart = !showCart)}>
+	<!-- double click bug here -- use built in modal??? -->
+	<button class="nav__shopping-cart" on:click={openModal}>
 		<img src={shoppingCartImg} alt="shopping cart" /></button
 	>
 </nav>
-{#if showCart}
-	<Cart showCart />
-{/if}
+
+<Cart {showCart} on:click={closeModal} />
 
 <style>
 	nav {
