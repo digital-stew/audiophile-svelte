@@ -3,15 +3,18 @@
 	// import { createEventDispatcher } from 'svelte';
 	// const dispatch = createEventDispatcher()
 	import { getItems, removeAll } from '$lib/cart';
+	import CartStore from '$lib/cart';
+	let test = $CartStore;
+	// console.log(test);
 	let items = getItems() || [];
-	$: list = items;
+	$: list = $CartStore;
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="backdrop" data-open={showCart} on:click|self>
 	<div class="cart" data-open={showCart}>
 		<div class="cart__header">
-			<h2>cart({items.length})</h2>
+			<h2>cart({list.length})</h2>
 			<button on:click={removeAll}>remove all</button>
 		</div>
 		<ul>

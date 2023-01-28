@@ -8,7 +8,7 @@
 	import ImageGrid from './ImageGrid.svelte';
 	/** @type {import('./$types').PageData} */
 	export let data: { res: IData };
-	console.log(data);
+	// console.log(data);
 </script>
 
 <ProductCard data={data.res} shopping={true} />

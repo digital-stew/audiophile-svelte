@@ -8,11 +8,16 @@
 	export let data: IData;
 	export let reverse = false;
 	export let shopping = false;
+	import CartStore from '$lib/cart';
+	$: cart = $CartStore;
 	let cartAmount = 1;
 	function click() {
 		console.log('clicking');
 
-		addItem(data.id, data.name, data.price, cartAmount);
+		CartStore.update((old) => [
+			...old,
+			{ id: data.id, item: data.name, price: data.price, amount: cartAmount }
+		]);
 	}
 	function addToCartAmount() {
 		cartAmount++;
