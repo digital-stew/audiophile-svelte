@@ -1,38 +1,48 @@
 <script lang="ts">
 	export let showCart = true;
-	// import { createEventDispatcher } from 'svelte';
-	// const dispatch = createEventDispatcher()
-	import { getItems, removeAll } from '$lib/cart';
+	import { removeAll, decrementProductCount, incrementProductCount } from '$lib/cart';
+	import numberToCurrency from '$lib/numberToCurrency';
 	import CartStore from '$lib/cart';
-	let test = $CartStore;
-	// console.log(test);
-	let items = getItems() || [];
-	$: list = $CartStore;
+	import Button from './Button.svelte';
+	$: cartTotal = numberToCurrency(
+		$CartStore.reduce((total, current) => total + current.price * current.amount, 0)
+	);
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="backdrop" data-open={showCart} on:click|self>
 	<div class="cart" data-open={showCart}>
 		<div class="cart__header">
-			<h2>cart({list.length})</h2>
+			<h2>cart({$CartStore.length})</h2>
 			<button on:click={removeAll}>remove all</button>
 		</div>
 		<ul>
-			{#each list as item}
-				<li>
-					<div>pic</div>
+			{#each $CartStore as item}
+				<li class="cart__item">
+					<div>
+						<img src={'/assets/cart/' + item.image} alt="" />
+					</div>
 					<div>
 						<div class="cart__item__name">
 							{item.item}
 						</div>
 						<div class="cart__item__price">
-							{item.price}
+							{numberToCurrency(item.price)}
 						</div>
 					</div>
-					<div class="cart__item__buttons"><button>-</button>{item.amount}<button>+</button></div>
+					<div class="cart__item__buttons">
+						<button on:click={() => decrementProductCount(item.id)}>-</button>
+						{item.amount}
+						<button on:click={() => incrementProductCount(item.id)}>+</button>
+					</div>
 				</li>
 			{/each}
 		</ul>
+		<div class="cart__footer">
+			<div class="cart__footer__text">total</div>
+			<div class="cart__footer__total">{cartTotal}</div>
+		</div>
+		<Button version={1} />
 	</div>
 </div>
 
@@ -61,37 +71,37 @@
 		font-weight: 700;
 		font-size: 18px;
 		line-height: 25px;
-		/* identical to box height */
-
 		letter-spacing: 1.28571px;
 		text-transform: uppercase;
-
 		color: #000000;
 	}
 	.cart__header button {
-		/* all: unset; */
 		cursor: pointer;
 		border: none;
 		background-color: transparent;
-		/* user-select: none; */
 		margin-left: auto;
-
 		font-weight: 500;
 		font-size: 15px;
 		line-height: 25px;
-
 		text-decoration-line: underline;
-
 		color: rgba(0, 0, 0, 0.5);
 	}
-	li {
+	.cart__item {
 		display: flex;
 		margin: 1rem;
 		gap: 1rem;
+		height: 64px;
+		justify-content: center;
+		justify-items: center;
+		align-items: center;
+	}
+	li img {
+		width: 64px;
+		height: 64px;
+		object-fit: contain;
 	}
 	.cart__item__buttons {
 		background-color: #f1f1f1;
-		/* padding: 1rem; */
 		width: 96px;
 		height: 32px;
 		display: flex;
@@ -116,8 +126,6 @@
 		font-weight: 700;
 		font-size: 15px;
 		line-height: 25px;
-		/* identical to box height, or 167% */
-
 		color: #000000;
 	}
 	.cart__item__price {
@@ -126,9 +134,19 @@
 		line-height: 25px;
 		color: rgba(0, 0, 0, 0.5);
 	}
-	/* .cart__price {
-		background-color: blue;
+	.cart__footer {
 		display: flex;
-		flex-direction: column;
-	} */
+		padding-inline: 2rem;
+		font-weight: 500;
+		font-size: 15px;
+		line-height: 25px;
+		color: rgba(0, 0, 0, 0.5);
+		text-transform: uppercase;
+	}
+	.cart__footer__total {
+		margin-left: auto;
+		font-weight: 700;
+		font-size: 18px;
+		color: #000000;
+	}
 </style>

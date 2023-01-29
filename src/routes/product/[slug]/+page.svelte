@@ -6,6 +6,7 @@
 	import LinkBar from '$lib/LinkBar.svelte';
 	import ProductDetails from './ProductDetails.svelte';
 	import ImageGrid from './ImageGrid.svelte';
+	import AlsoLike from '$lib/AlsoLike.svelte';
 	export let data: { res: IData };
 	// console.log(data);
 </script>
@@ -15,7 +16,7 @@
 <ImageGrid data={data.res} />
 
 <LinkBar />
-
+<!-- <AlsoLike products={data.res.others} /> -->
 <About />
 
 <style>

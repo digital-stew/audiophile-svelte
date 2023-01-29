@@ -1,23 +1,26 @@
 <script lang="ts">
 	// import Cart, { add } from './Cart.svelte';
-	import { addItem } from '$lib/cart';
+	// import { addItem } from '$lib/cart';
 	import { browser } from '$app/environment';
 	import Button from '$lib/Button.svelte';
 	import type IData from '../../types/Idata';
 	import { goto } from '$app/navigation';
+	import numberToCurrency from '$lib/numberToCurrency';
+	import { addCartItem } from '$lib/cart';
 	export let data: IData;
 	export let reverse = false;
 	export let shopping = false;
 	import CartStore from '$lib/cart';
-	$: cart = $CartStore;
+	// $: cart = $CartStore;
 	let cartAmount = 1;
-	function click() {
-		console.log('clicking');
-
-		CartStore.update((old) => [
-			...old,
-			{ id: data.id, item: data.name, price: data.price, amount: cartAmount }
-		]);
+	function handleAddCartItem() {
+		addCartItem({
+			id: data.id,
+			item: data.name,
+			price: data.price,
+			amount: cartAmount,
+			image: data.cartImage
+		});
 	}
 	function addToCartAmount() {
 		cartAmount++;
@@ -50,7 +53,7 @@
 		</div>
 		{#if shopping}
 			<div class="card__data__price">
-				{data.price}
+				{numberToCurrency(data.price)}
 			</div>
 
 			<div class="card__data__shopping-buttons">
@@ -59,7 +62,7 @@
 					<span class="card__data__shopping-buttons__value">{cartAmount}</span>
 					<button on:click={addToCartAmount}>+</button>
 				</span>
-				<span><Button version={1} {shopping} on:click={click} /></span>
+				<span><Button version={1} {shopping} on:click={handleAddCartItem} /></span>
 			</div>
 		{:else}
 			<div>
@@ -172,10 +175,12 @@
 		background-color: transparent;
 		cursor: pointer;
 	}
-	/* .card__data__price {
-		display: none;
+	.card__data__price {
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 25px;
+		letter-spacing: 1.28571px;
+		text-transform: uppercase;
+		color: #000000;
 	}
-	.card__data__price--show {
-		display: block;
-	} */
 </style>
