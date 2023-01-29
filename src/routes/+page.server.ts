@@ -15,10 +15,10 @@ export async function load({ cookies }) {
         cookies.set('auth', token)
     }
     if (authCookie) {
-        console.log(authCookie)
+        // console.log(authCookie)
         jwt.verify(authCookie, 'password', (err, decoded) => {
             // console.log(err)
-            console.log(decoded)
+            // console.log(decoded)
         })
     }
     return { ...data }

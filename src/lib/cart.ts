@@ -5,6 +5,7 @@ interface IItem {
     price: number;
     amount: number
 }
+
 export function addItem(id: number, item: string, price: number, amount: number) {
     // if (browser) {
 
@@ -21,4 +22,16 @@ export function getItems(): IItem[] {
 
 export function removeAll() {
     window.localStorage.setItem('audiophile-cart', '[]')
+    CartStore.set([])
 }
+
+import { writable } from 'svelte/store'
+
+console.log('store')
+let store
+if (store === undefined) store = getItems()
+const CartStore = writable(store)
+CartStore.subscribe((data) => {
+    if (browser) window.localStorage.setItem('audiophile-cart', JSON.stringify(data))
+})
+export default CartStore
