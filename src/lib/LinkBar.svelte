@@ -28,9 +28,10 @@
 	nav {
 		display: flex;
 		position: relative;
-		max-width: 1400px;
+		max-width: 1110px;
 		gap: 1rem;
 		margin-inline: auto;
+		padding: 2rem;
 	}
 	img {
 		width: 100%;

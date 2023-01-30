@@ -34,7 +34,7 @@
 	.footer {
 		background-color: #101010;
 		color: white;
-		height: 365px;
+		/* height: 365px; */
 		/* margin-top: 200px; */
 		display: grid;
 		grid-template-columns: 1fr 1fr;

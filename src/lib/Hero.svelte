@@ -12,24 +12,22 @@
 	import { goto } from '$app/navigation';
 </script>
 
-<section class="heroSection">
-	<!-- <img src={heroDesktop} alt="" /> -->
+<section class="hero">
 	<picture>
-		<!--width <1000px ? -->
 		<source srcset={heroMobile} media="(max-width: 376px)" />
 		<source srcset={heroTablet} media="(max-width: 769px)" />
 		<img src={heroDesktop} alt="hero" />
 	</picture>
-	<aside>
-		<div class="newProduct">
+	<aside class="hero__product">
+		<div class="hero__product__new-product">
 			{#if data[3].new}
 				new product
 			{/if}
 		</div>
 
-		<h1 class="name">{data[3].name}</h1>
+		<h1 class="hero__product__title">{data[3].name}</h1>
 
-		<div class="description">
+		<div class="hero__product__description">
 			Experience natural, lifelike audio and exceptional build quality made for the passionate music
 			enthusiast
 		</div>
@@ -40,22 +38,22 @@
 </section>
 
 <style>
-	.heroSection {
+	.hero {
 		position: relative;
-		width: 100%;
+		/* width: 100%; */
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		/* margin-bottom: 96px; */
 	}
-	.heroSection picture,
-	.heroSection img {
+	.hero picture,
+	.hero img {
 		grid-column: 1/3;
 		width: 100%;
-		object-fit: cover;
-		height: 100%;
+		/* object-fit: cover; */
+		/* height: 100%; */
 		grid-row: 1;
 	}
-	.heroSection aside {
+	.hero__product {
 		color: white;
 		/* border: thin solid white; */
 		grid-column: 1/2;
@@ -68,28 +66,28 @@
 		flex-direction: column;
 		gap: 1rem;
 	}
-	.newProduct {
+	.hero__product__new-product {
 		font-weight: 400;
 		font-size: 14px;
 		line-height: 19px;
 		letter-spacing: 10px;
 		opacity: 0.5;
 	}
-	.name {
+	.hero__product__title {
 		font-weight: 700;
 		font-size: 56px;
 		line-height: 58px;
 		letter-spacing: 2px;
 		text-transform: uppercase;
 	}
-	.description {
+	.hero__product__description {
 		font-weight: 500;
 		font-size: 15px;
 		line-height: 25px;
 		opacity: 0.75;
 		width: 349px;
 	}
-	.heroSection::before {
+	.hero::before {
 		content: '';
 		position: absolute;
 		top: 0;
@@ -101,24 +99,24 @@
 	}
 	/* mobile */
 	@media (max-width: 480px) {
-		.heroSection {
+		.hero {
 			grid-template-columns: 1fr;
 		}
-		.heroSection .newProduct {
+		.hero__product__new-product {
 			text-align: center;
 		}
-		.heroSection aside {
+		.hero__product {
 			width: 100%;
 			grid-column: 1;
 			grid-row: 1;
 		}
-		.name {
+		.hero__product__title {
 			font-size: 36px;
 			text-align: center;
 			line-height: 40px;
 			letter-spacing: 1.28px;
 		}
-		.description {
+		.hero__product__description {
 			text-align: center;
 			/* width: 328px; */
 		}
@@ -129,19 +127,20 @@
 
 	/* tablet */
 	@media (max-width: 768px) {
-		.heroSection {
+		.hero {
 			grid-template-columns: 1fr;
+			width: 100%;
 		}
-		.heroSection .newProduct {
+		.hero__product__new-product {
 			text-align: center;
 		}
-		.heroSection aside {
+		.hero__product {
 			width: 379px;
 			height: 346px;
 			grid-column: 1;
 			grid-row: 1;
 		}
-		.description {
+		.hero__product__description {
 			text-align: center;
 			/* width: 328px; */
 		}

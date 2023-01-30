@@ -20,7 +20,7 @@
 	}
 </script>
 
-<nav>
+<nav class="nav">
 	<button class="nav__hamburger" on:click={toggleShow}>
 		<img src={hamburgerIcon} alt="logo" />
 	</button>

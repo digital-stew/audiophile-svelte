@@ -86,7 +86,8 @@
 		grid-template-columns: repeat(auto-fit, 500px);
 		max-width: 1110px;
 		/* background-color: #d87d4a; */
-		margin: 160px auto;
+		/* margin: 160px auto; */
+		margin-inline: auto;
 		justify-content: center;
 		align-content: center;
 

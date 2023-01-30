@@ -6,8 +6,8 @@
 	// console.log('layout.svelte');
 </script>
 
+<Navbar />
 <main data-sveltekit-preload-data style="--mobile: max-width: 480px">
-	<Navbar />
 	<slot />
-	<Footer />
 </main>
+<Footer />

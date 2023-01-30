@@ -16,3 +16,19 @@ body {
 	margin: 0;
 	padding: 0;
 }
+main {
+	display: grid;
+	gap: 10rem;
+}
+footer {
+	margin-top: 10rem;
+}
+.nav {
+	/* margin-bottom: 10rem; */
+}
+main > * {
+	/* margin-bottom: 10rem; */
+}
+main > *:not(.hero) {
+	/* margin-top: 10rem; */
+}
