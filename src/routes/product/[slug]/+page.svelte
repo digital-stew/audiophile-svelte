@@ -15,8 +15,8 @@
 <ProductDetails data={data.res} />
 <ImageGrid data={data.res} />
 
+<AlsoLike products={data.res.others} />
 <LinkBar />
-<!-- <AlsoLike products={data.res.others} /> -->
 <About />
 
 <style>

@@ -1,12 +1,18 @@
 <script lang="ts">
-	export let showCart = true;
+	export let showCart = false;
 	import { removeAll, decrementProductCount, incrementProductCount } from '$lib/cart';
 	import numberToCurrency from '$lib/numberToCurrency';
 	import CartStore from '$lib/cart';
 	import Button from './Button.svelte';
+	import { goto } from '$app/navigation';
 	$: cartTotal = numberToCurrency(
 		$CartStore.reduce((total, current) => total + current.price * current.amount, 0)
 	);
+	export let closeModal: () => void;
+	function handleCheckoutClick() {
+		closeModal();
+		goto('/checkout');
+	}
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -42,7 +48,7 @@
 			<div class="cart__footer__text">total</div>
 			<div class="cart__footer__total">{cartTotal}</div>
 		</div>
-		<Button version={1} />
+		<Button version={1} wide={true} text={'checkout'} on:click={handleCheckoutClick} />
 	</div>
 </div>
 

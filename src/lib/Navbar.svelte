@@ -34,7 +34,7 @@
 	>
 </nav>
 
-<Cart {showCart} on:click={closeModal} />
+<Cart {closeModal} {showCart} on:click={closeModal} />
 
 <style>
 	nav {

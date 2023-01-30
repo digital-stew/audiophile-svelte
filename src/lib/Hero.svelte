@@ -45,7 +45,7 @@
 		width: 100%;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		margin-bottom: 96px;
+		/* margin-bottom: 96px; */
 	}
 	.heroSection picture,
 	.heroSection img {

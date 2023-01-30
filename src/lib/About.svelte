@@ -25,7 +25,7 @@
 <style>
 	.about {
 		max-width: 1000px;
-		margin: 2rem auto;
+		margin-inline: auto;
 		display: grid;
 		grid-template-columns: repeat(auto-fit, 500px);
 		align-content: center;

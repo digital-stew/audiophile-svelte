@@ -1,6 +1,8 @@
 <script lang="ts">
 	export let version = 2;
 	export let shopping = false;
+	export let wide = false;
+	export let text = 'see product';
 </script>
 
 <button
@@ -8,9 +10,11 @@
 	class:btn1={version === 1}
 	class:btn2={version === 2}
 	class:btn3={version === 3}
-	on:click>{version === 3 ? 'shop' : shopping === true ? 'add to cart' : 'see product'}</button
+	class:wide
+	on:click>{text}</button
 >
 
+<!-- shop - add to cart - see product -->
 <style>
 	.btn {
 		cursor: pointer;
@@ -67,5 +71,8 @@
 	}
 	.btn3:hover::after {
 		transform: translateX(5px);
+	}
+	.wide {
+		width: 100%;
 	}
 </style>

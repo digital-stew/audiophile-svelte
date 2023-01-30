@@ -68,7 +68,7 @@
 
 <style>
 	.products-grid {
-		margin-top: 20rem;
+		/* margin-top: 20rem; */
 		display: grid;
 		gap: 48px;
 		position: relative;

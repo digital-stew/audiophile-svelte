@@ -10,17 +10,17 @@
 	<div>
 		<img src={headphonesImage} alt="headphones" />
 		headphones
-		<Button version={3} on:click={() => goto('/products/headphones')} />
+		<Button version={3} text={'shop'} on:click={() => goto('/products/headphones')} />
 	</div>
 	<div>
 		<img src={speakerImage} alt="speaker" />
 		speakers
-		<Button version={3} on:click={() => goto('/products/speakers')} />
+		<Button version={3} text={'shop'} on:click={() => goto('/products/speakers')} />
 	</div>
 	<div>
 		<img src={earphonesImage} alt="earphones" />
 		earphones
-		<Button version={3} on:click={() => goto('/products/earphones')} />
+		<Button version={3} text={'shop'} on:click={() => goto('/products/earphones')} />
 	</div>
 </nav>
 

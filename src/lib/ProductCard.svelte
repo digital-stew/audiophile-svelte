@@ -62,7 +62,9 @@
 					<span class="card__data__shopping-buttons__value">{cartAmount}</span>
 					<button on:click={addToCartAmount}>+</button>
 				</span>
-				<span><Button version={1} {shopping} on:click={handleAddCartItem} /></span>
+				<span
+					><Button version={1} text={'add to cart'} {shopping} on:click={handleAddCartItem} /></span
+				>
 			</div>
 		{:else}
 			<div>
