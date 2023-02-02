@@ -24,17 +24,22 @@
 
 <style>
 	.about {
-		max-width: 1000px;
+		max-width: 1100px;
 		margin-inline: auto;
-		display: grid;
-		grid-template-columns: repeat(auto-fit, 500px);
+		/* display: grid; */
+		/* grid-template-columns: repeat(auto-fit, 500px); */
+		display: flex;
 		align-content: center;
 		justify-content: center;
 		position: relative;
 		justify-content: center;
 		justify-items: center;
+		flex-wrap: wrap-reverse;
 	}
-
+	.about > * {
+		width: 500px;
+		/* flex-basis: 1; */
+	}
 	.about__body {
 		margin: 2rem;
 	}
@@ -58,6 +63,7 @@
 		border-radius: 16px;
 		object-fit: cover;
 		width: 100%;
+		height: 100%;
 		position: relative;
 	}
 	@media (max-width: 768px) {

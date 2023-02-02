@@ -1,4 +1,5 @@
-<ul data-sveltekit-preload-data>
+<!-- <ul data-sveltekit-preload-data> -->
+<ul>
 	<li><a href="/">home</a></li>
 	<li><a href="/products/headphones">headphones</a></li>
 	<li><a href="/products/speakers">speakers</a></li>
@@ -24,5 +25,15 @@
 	}
 	li:hover * {
 		color: var(--primary);
+		/* color: red; */
+	}
+	@media (max-width: 480px) {
+		ul {
+			flex-direction: column;
+			/* background-color: red; */
+			/* color: blue; */
+			text-align: center;
+			/* gap: 20rem; */
+		}
 	}
 </style>
