@@ -7,7 +7,7 @@
 </script>
 
 <Navbar />
-<main data-sveltekit-preload-data style="--mobile: max-width: 480px">
+<main class="main" data-sveltekit-preload-data style="--mobile: max-width: 480px">
 	<slot />
 </main>
 <Footer />

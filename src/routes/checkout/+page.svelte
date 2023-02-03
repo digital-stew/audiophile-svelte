@@ -151,6 +151,7 @@
 	.checkout__payment__radio {
 		display: grid;
 		gap: 1rem;
+		accent-color: var(--primary);
 	}
 	.checkout__payment__radio label {
 		display: flex;

@@ -3,6 +3,7 @@
 
 	import ProductCard from '$lib/ProductCard.svelte';
 	import Button from './Button.svelte';
+	import { goto } from '$app/navigation';
 
 	export let products: IOthers[];
 </script>
@@ -18,7 +19,7 @@
 					<img src={'/' + product.image.desktop} alt="hero" />
 				</picture>
 				<h3 class="also-like__product__title">{product.name}</h3>
-				<Button version={1} />
+				<Button version={1} on:click={() => goto('/product/' + product.slug)} />
 			</div>
 		{/each}
 	</div>
