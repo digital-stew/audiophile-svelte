@@ -8,12 +8,14 @@
 </script>
 
 <footer class="footer">
-	<div class="footer__logo-wrap">
-		<img class="footer__logo" src={logo} alt="logo" />
-	</div>
+	<div class="footer__head">
+		<div class="footer__logo-wrap">
+			<img class="footer__logo" src={logo} alt="logo" />
+		</div>
 
-	<div class="footer__links">
-		<NavLinks />
+		<div class="footer__links">
+			<NavLinks />
+		</div>
 	</div>
 
 	<p class="footer__body">
@@ -40,10 +42,19 @@
 		padding: 2rem;
 		gap: 2rem;
 	}
+	.footer__head {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
 	.footer__links {
-		width: 500px;
+		max-width: 900px;
+		min-width: 400px;
+		flex-grow: 1;
+		margin-left: auto;
 	}
 	.footer__body {
+		max-width: 60%;
 		font-weight: 500;
 		font-size: 15px;
 		line-height: 25px;
@@ -54,17 +65,10 @@
 		font-size: 15px;
 		line-height: 25px;
 		color: rgba(255, 255, 255, 0.5);
-
 		font-style: normal;
 		font-weight: 700;
 		font-size: 15px;
 		line-height: 25px;
-		/* identical to box height, or 167% */
-
-		color: #ffffff;
-
-		mix-blend-mode: normal;
-		opacity: 0.5;
 	}
 	.footer__media {
 		position: absolute;
@@ -73,5 +77,11 @@
 		padding: 1.5rem;
 		display: flex;
 		gap: 1rem;
+	}
+	@media (max-width: 768px) {
+		.footer__body {
+			text-align: center;
+			max-width: 100%;
+		}
 	}
 </style>
