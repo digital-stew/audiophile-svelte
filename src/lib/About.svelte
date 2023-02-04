@@ -36,10 +36,10 @@
 		justify-items: center;
 		flex-wrap: wrap-reverse;
 	}
-	.about > * {
+	/* .about > * {
 		width: 500px;
-		/* flex-basis: 1; */
-	}
+		flex-basis: 1;
+	} */
 	.about__body {
 		margin: 2rem;
 	}
@@ -62,8 +62,8 @@
 	picture {
 		border-radius: 16px;
 		object-fit: cover;
-		width: 100%;
-		height: 100%;
+		width: 90%;
+		/* height: 80%; */
 		position: relative;
 	}
 	@media (max-width: 768px) {

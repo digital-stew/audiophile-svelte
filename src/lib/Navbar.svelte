@@ -47,6 +47,9 @@
 		padding-top: 1rem;
 		padding-bottom: 2rem;
 		padding-inline: 5%;
+		/* width: 1000px; */
+		/* background-color: blue; */
+		/* width: 100vw; */
 	}
 	.nav__links {
 		/* background-color: red; */

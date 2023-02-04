@@ -38,7 +38,7 @@
 		background-color: #101010;
 		color: white;
 		display: grid;
-		width: 100%;
+		/* width: 100%; */
 		padding: 2rem;
 		gap: 2rem;
 	}
@@ -48,8 +48,8 @@
 	}
 
 	.footer__links {
-		max-width: 900px;
-		min-width: 400px;
+		/* max-width: 900px; */
+		/* min-width: 400px; */
 		flex-grow: 1;
 		margin-left: auto;
 	}
@@ -82,6 +82,12 @@
 		.footer__body {
 			text-align: center;
 			max-width: 100%;
+		}
+	}
+	@media (max-width: 480px) {
+		.footer__logo-wrap {
+			width: 100%;
+			text-align: center;
 		}
 	}
 </style>

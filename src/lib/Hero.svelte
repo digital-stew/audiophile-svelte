@@ -49,6 +49,7 @@
 	.hero img {
 		grid-column: 1/3;
 		width: 100%;
+		height: 100%;
 		/* object-fit: cover; */
 		/* height: 100%; */
 		grid-row: 1;
@@ -135,7 +136,7 @@
 			text-align: center;
 		}
 		.hero__product {
-			width: 379px;
+			/* width: 379px; */
 			height: 346px;
 			grid-column: 1;
 			grid-row: 1;
