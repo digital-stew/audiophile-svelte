@@ -26,8 +26,6 @@
 	.about {
 		max-width: 1100px;
 		margin-inline: auto;
-		/* display: grid; */
-		/* grid-template-columns: repeat(auto-fit, 500px); */
 		display: flex;
 		align-content: center;
 		justify-content: center;
@@ -36,10 +34,6 @@
 		justify-items: center;
 		flex-wrap: wrap-reverse;
 	}
-	/* .about > * {
-		width: 500px;
-		flex-basis: 1;
-	} */
 	.about__body {
 		margin: 2rem;
 	}
@@ -53,7 +47,6 @@
 		font-weight: 700;
 		font-size: 40px;
 		line-height: 44px;
-
 		letter-spacing: 1.42857px;
 		text-transform: uppercase;
 		margin-bottom: 32px;
@@ -63,7 +56,6 @@
 		border-radius: 16px;
 		object-fit: cover;
 		width: 90%;
-		/* height: 80%; */
 		position: relative;
 	}
 	@media (max-width: 768px) {

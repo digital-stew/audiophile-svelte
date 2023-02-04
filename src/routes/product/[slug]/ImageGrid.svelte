@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type IData from '../../../../types/Idata';
-
 	export let data: IData;
 </script>
 

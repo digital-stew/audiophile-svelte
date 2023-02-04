@@ -1,6 +1,5 @@
 <script lang="ts">
 	export let version = 2;
-	export let shopping = false;
 	export let wide = false;
 	export let text = 'see product';
 </script>
@@ -14,7 +13,6 @@
 	on:click>{text}</button
 >
 
-<!-- shop - add to cart - see product -->
 <style>
 	.btn {
 		cursor: pointer;
@@ -28,25 +26,24 @@
 		text-transform: uppercase;
 		transition: all 200ms ease-in-out;
 	}
-
 	.btn1 {
 		background-color: var(--primary);
 		color: white;
 	}
-	.btn1:hover {
+	.btn1:hover,
+	.btn1:focus {
 		background-color: var(--active);
 	}
-
 	.btn2 {
 		background-color: transparent;
 		border: thin solid black;
 		color: black;
 	}
-	.btn2:hover {
+	.btn2:hover,
+	.btn2:focus {
 		background-color: black;
 		color: white;
 	}
-
 	.btn3 {
 		background-color: transparent;
 		color: black;
@@ -66,10 +63,12 @@
 		background-size: contain;
 		transition: all 200ms ease-in-out;
 	}
-	.btn3:hover {
+	.btn3:hover,
+	.btn3:focus {
 		color: var(--primary);
 	}
-	.btn3:hover::after {
+	.btn3:hover::after,
+	.btn3:focus::after {
 		transform: translateX(5px);
 	}
 	.wide {

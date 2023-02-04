@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type IData from '../../../../types/Idata';
-
 	export let data: IData;
 </script>
 
@@ -26,14 +25,14 @@
 	.product-details {
 		display: grid;
 		grid-template-columns: 60% 40%;
-		max-width: 1400px;
+		max-width: 1100px;
 		margin-inline: auto;
+		padding: 1rem;
 		font-weight: 500;
 		font-size: 15px;
 		line-height: 25px;
 		color: #000000;
 		gap: 2rem;
-		margin-bottom: 10rem;
 	}
 	.product-details__title {
 		font-weight: 700;
@@ -45,8 +44,7 @@
 		margin-bottom: 2rem;
 	}
 	.product-details__body {
-		opacity: 0.5;
-		padding-right: 4rem;
+		color: rgba(0, 0, 0, 0.5);
 	}
 	.product-details__quantity {
 		color: var(--primary);
@@ -55,15 +53,7 @@
 	@media (max-width: 768px) {
 		.product-details {
 			grid-template-columns: 100%;
-			grid-template-rows: 1fr 1fr;
 			margin-inline: 1rem;
-		}
-		.product-details__in-the-box {
-			display: flex;
-		}
-		.product-details__in-the-box .product-details__body {
-			margin-left: auto;
-			margin-top: 3rem;
 		}
 	}
 </style>

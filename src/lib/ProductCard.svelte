@@ -1,6 +1,4 @@
 <script lang="ts">
-	// import Cart, { add } from './Cart.svelte';
-	// import { addItem } from '$lib/cart';
 	import { browser } from '$app/environment';
 	import Button from '$lib/Button.svelte';
 	import type IData from '../../types/Idata';
@@ -10,9 +8,8 @@
 	export let data: IData;
 	export let reverse = false;
 	export let shopping = false;
-	import CartStore from '$lib/cart';
-	// $: cart = $CartStore;
 	let cartAmount = 1;
+
 	function handleAddCartItem() {
 		addCartItem({
 			id: data.id,
@@ -22,9 +19,11 @@
 			image: data.cartImage
 		});
 	}
+
 	function addToCartAmount() {
 		cartAmount++;
 	}
+
 	function subFromCartAmount() {
 		if (cartAmount <= 1) return;
 		cartAmount--;
@@ -62,9 +61,7 @@
 					<span class="card__data__shopping-buttons__value">{cartAmount}</span>
 					<button on:click={addToCartAmount}>+</button>
 				</span>
-				<span
-					><Button version={1} text={'add to cart'} {shopping} on:click={handleAddCartItem} /></span
-				>
+				<span><Button version={1} text={'add to cart'} on:click={handleAddCartItem} /></span>
 			</div>
 		{:else}
 			<div>
@@ -82,29 +79,17 @@
 	.card {
 		position: relative;
 		display: grid;
-		/* grid-template-columns: 1fr 1fr; */
-		grid-template-columns: repeat(auto-fit, 500px);
+		grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
 		max-width: 1110px;
-		/* background-color: #d87d4a; */
-		/* margin: 160px auto; */
 		margin-inline: auto;
 		justify-content: center;
 		align-content: center;
-
-		/* height: 560px; */
-		/* object-fit: contain; */
-	}
-	.card__image,
-	.card__data {
-		width: 500px;
 	}
 	.card__image {
 		position: relative;
-		/* object-fit: contain; */
-		/* grid-column: 1/2; */
 	}
-	img {
-		/* grid-column: 1/2; */
+	img,
+	picture {
 		position: relative;
 		object-fit: cover;
 		width: 100%;
@@ -124,37 +109,27 @@
 		line-height: 19px;
 		letter-spacing: 10px;
 		text-transform: uppercase;
-
 		color: #d87d4a;
 	}
 	.card__data__title {
 		font-weight: 700;
 		font-size: 40px;
 		line-height: 44px;
-		/* or 110% */
-
 		letter-spacing: 1.42857px;
 		text-transform: uppercase;
-
 		color: #000000;
 	}
 	.card__data__body {
 		font-weight: 500;
 		font-size: 15px;
 		line-height: 25px;
-		/* or 167% */
-
-		color: #000000;
-
-		mix-blend-mode: normal;
-		opacity: 0.5;
+		color: rgba(0, 0, 0, 0.5);
 	}
 	.card__data__shopping-buttons {
 		display: flex;
 	}
 	.card__data__shopping-buttons__amount {
 		background-color: #f1f1f1;
-		/* padding: 1rem; */
 		width: 120px;
 		display: inline-block;
 		height: 48px;
@@ -169,7 +144,6 @@
 		place-items: center;
 	}
 	.card__data__shopping-buttons__amount > * {
-		/* background-color: red; */
 		width: 33%;
 		height: 100%;
 	}
@@ -185,5 +159,15 @@
 		letter-spacing: 1.28571px;
 		text-transform: uppercase;
 		color: #000000;
+	}
+	@media (max-width: 768px) {
+		.card {
+			max-width: 100%;
+		}
+		.card__data {
+			padding: 2rem;
+			text-align: center;
+			align-items: center;
+		}
 	}
 </style>

@@ -64,6 +64,9 @@
 		z-index: 2;
 	}
 	.cart {
+		position: relative;
+		display: flex;
+		flex-direction: column;
 		background-color: white;
 		right: 10rem;
 		top: 7rem;
@@ -116,7 +119,6 @@
 		align-items: center;
 		text-align: center;
 		margin-left: auto;
-
 		gap: 0.5rem;
 	}
 	.cart__item__buttons > * {
@@ -142,6 +144,7 @@
 	}
 	.cart__footer {
 		display: flex;
+		margin-block: 2rem;
 		padding-inline: 2rem;
 		font-weight: 500;
 		font-size: 15px;
@@ -154,5 +157,13 @@
 		font-weight: 700;
 		font-size: 18px;
 		color: #000000;
+	}
+	@media (max-width: 768px) {
+		.cart {
+			top: 0;
+			left: 0;
+			right: 0;
+			margin: 1rem;
+		}
 	}
 </style>

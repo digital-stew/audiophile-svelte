@@ -1,11 +1,7 @@
 <script lang="ts">
-	import Navbar from './Navbar.svelte';
-	import LinkBar from './LinkBar.svelte';
 	import heroDesktop from './assets/home/desktop/image-hero.jpg';
 	import heroTablet from './assets/home/tablet/image-header.jpg';
 	import heroMobile from './assets/home/mobile/image-header.jpg';
-	// import sdf from './B'
-	import speakerImage from './assets/home/desktop/image-speaker-zx9.png';
 	import type IData from '../../types/Idata';
 	import Button from './Button.svelte';
 	export let data: IData[];
@@ -40,23 +36,18 @@
 <style>
 	.hero {
 		position: relative;
-		/* width: 100%; */
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		/* margin-bottom: 96px; */
 	}
 	.hero picture,
 	.hero img {
 		grid-column: 1/3;
 		width: 100%;
 		height: 100%;
-		/* object-fit: cover; */
-		/* height: 100%; */
 		grid-row: 1;
 	}
 	.hero__product {
 		color: white;
-		/* border: thin solid white; */
 		grid-column: 1/2;
 		grid-row: 1;
 		width: 398px;
@@ -119,7 +110,6 @@
 		}
 		.hero__product__description {
 			text-align: center;
-			/* width: 328px; */
 		}
 		.button {
 			align-self: center;
@@ -136,14 +126,12 @@
 			text-align: center;
 		}
 		.hero__product {
-			/* width: 379px; */
 			height: 346px;
 			grid-column: 1;
 			grid-row: 1;
 		}
 		.hero__product__description {
 			text-align: center;
-			/* width: 328px; */
 		}
 		.button {
 			align-self: center;

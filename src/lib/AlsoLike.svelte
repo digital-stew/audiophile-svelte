@@ -1,7 +1,5 @@
 <script lang="ts">
 	import type { IOthers } from '$types/Idata';
-
-	import ProductCard from '$lib/ProductCard.svelte';
 	import Button from './Button.svelte';
 	import { goto } from '$app/navigation';
 
@@ -33,13 +31,13 @@
 		line-height: 36px;
 		letter-spacing: 1.14286px;
 		text-transform: uppercase;
-
 		color: #000000;
 		margin-bottom: 4rem;
 	}
 	.also-like {
 		margin-inline: auto;
-		max-width: 1300px;
+		max-width: 1100px;
+		padding-inline: 1rem;
 	}
 	.also-like__products {
 		position: relative;

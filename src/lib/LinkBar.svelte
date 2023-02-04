@@ -38,11 +38,9 @@
 		height: 100%;
 		object-fit: contain;
 		position: relative;
-		/* border: thin solid black; */
 	}
 	div {
 		display: flex;
-		/* gap: 1rem; */
 		flex-direction: column;
 		position: relative;
 		align-items: center;

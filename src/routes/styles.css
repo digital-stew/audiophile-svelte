@@ -15,25 +15,15 @@ body {
 	font-family: Manrope;
 	margin: 0;
 	padding: 0;
-	/* background-color: red; */
 }
 main {
 	display: grid;
 	gap: 10rem;
-	/* margin-top: 5rem; */
 }
 footer {
 	margin-top: 10rem;
 }
-.nav {
-	/* margin-bottom: 10rem; */
-}
-main > * {
-	/* margin-bottom: 10rem; */
-}
-main > *:not(.hero) {
-	/* margin-top: 10rem; */
-}
+
 section:first-child:not(.hero) {
 	margin-top: 5rem;
 }

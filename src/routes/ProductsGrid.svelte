@@ -128,14 +128,10 @@
 		font-weight: 500;
 		font-size: 15px;
 		line-height: 25px;
-		width: 349px;
-		height: 75px;
 		color: #ffffff;
 		mix-blend-mode: normal;
 		opacity: 0.75;
-		/* z-index: 2; */
 	}
-
 	.products-grid__product-2 {
 		grid-column: 1/3;
 		grid-row: 2/3;
@@ -164,7 +160,6 @@
 		text-transform: uppercase;
 		color: #000000;
 	}
-
 	.products-grid__product-3__data {
 		display: grid;
 		background-color: #f1f1f1;
@@ -176,10 +171,14 @@
 		flex-direction: column;
 		gap: 2rem;
 	}
-
 	@media (max-width: 768px) {
 		.products-grid__product-1 {
 			grid-template-columns: 1fr;
+			text-align: center;
+		}
+		.products-grid__product-1__data {
+			align-items: center;
+			width: fit-content;
 		}
 	}
 	@media (max-width: 480px) {

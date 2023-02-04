@@ -1,6 +1,5 @@
 <script>
 	import logo from '$assetsServer/shared/desktop/logo.svg';
-	// import Navbar from '../routes/Navbar.svelte';
 	import facebookLogo from '$assetsServer/shared/desktop/icon-facebook.svg';
 	import instagramLogo from '$assetsServer/shared/desktop/icon-instagram.svg';
 	import twitterLogo from '$assetsServer/shared/desktop/icon-twitter.svg';
@@ -38,7 +37,6 @@
 		background-color: #101010;
 		color: white;
 		display: grid;
-		/* width: 100%; */
 		padding: 2rem;
 		gap: 2rem;
 	}
@@ -46,10 +44,7 @@
 		display: flex;
 		flex-wrap: wrap;
 	}
-
 	.footer__links {
-		/* max-width: 900px; */
-		/* min-width: 400px; */
 		flex-grow: 1;
 		margin-left: auto;
 	}
@@ -71,9 +66,7 @@
 		line-height: 25px;
 	}
 	.footer__media {
-		position: absolute;
-		right: 0;
-		bottom: 0;
+		justify-self: end;
 		padding: 1.5rem;
 		display: flex;
 		gap: 1rem;

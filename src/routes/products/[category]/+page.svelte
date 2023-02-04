@@ -17,6 +17,3 @@
 
 <LinkBar />
 <About />
-
-<style>
-</style>

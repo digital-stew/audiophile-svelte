@@ -1,4 +1,3 @@
-<!-- <ul data-sveltekit-preload-data> -->
 <ul>
 	<li><a href="/">home</a></li>
 	<li><a href="/products/headphones">headphones</a></li>
@@ -12,7 +11,6 @@
 		text-transform: uppercase;
 		display: flex;
 		flex-grow: 1;
-		/* gap: 8rem; */
 		justify-content: space-around;
 		list-style: none;
 		max-width: auto;
@@ -23,17 +21,14 @@
 		text-decoration: none;
 		color: white;
 	}
-	li:hover * {
+	li:hover *,
+	li:focus * {
 		color: var(--primary);
-		/* color: red; */
 	}
 	@media (max-width: 480px) {
 		ul {
 			flex-direction: column;
-			/* background-color: red; */
-			/* color: blue; */
 			text-align: center;
-			/* gap: 20rem; */
 		}
 	}
 </style>

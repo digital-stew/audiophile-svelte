@@ -1,6 +1,4 @@
 <script lang="ts">
-	/** @type {import('./$types').PageData} */
-
 	import logo from './assets/shared/desktop/logo.svg';
 	import shoppingCartImg from './assets/shared/desktop/icon-cart.svg';
 	import NavLinks from './NavLinks.svelte';
@@ -28,7 +26,6 @@
 	<div class="nav__links" class:nav__links--show={showLinks}>
 		<NavLinks />
 	</div>
-	<!-- double click bug here -- use built in modal??? -->
 	<button class="nav__shopping-cart" on:click={openModal}>
 		<img src={shoppingCartImg} alt="shopping cart" /></button
 	>
@@ -47,12 +44,8 @@
 		padding-top: 1rem;
 		padding-bottom: 2rem;
 		padding-inline: 5%;
-		/* width: 1000px; */
-		/* background-color: blue; */
-		/* width: 100vw; */
 	}
 	.nav__links {
-		/* background-color: red; */
 		max-width: 1000px;
 		flex-grow: 1;
 	}
@@ -95,9 +88,5 @@
 		.nav__hamburger {
 			display: block;
 		}
-	}
-
-	/* mobile */
-	@media (max-width: 480px) {
 	}
 </style>

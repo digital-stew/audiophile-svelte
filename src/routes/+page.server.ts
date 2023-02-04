@@ -5,7 +5,6 @@ interface IUser {
     uuid: string;
     name: string;
 }
-console.log('page.server.ts')
 export async function load({ cookies }) {
     let authCookie = cookies.get('auth')
     if (!authCookie) {
