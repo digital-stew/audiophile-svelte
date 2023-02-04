@@ -1,106 +1,147 @@
 <script lang="ts">
 	import CartStore from '$lib/cart';
 	import numberToCurrency from '$lib/numberToCurrency';
+	import Button from '$lib/Button.svelte';
+	function handleCheckoutClick() {}
 </script>
 
-<section class="checkout">
-	<h1 class="checkout__title">checkout</h1>
-	<h2 class="checkout__sub-title">billing details</h2>
+<div class="checkout-wrap">
+	<section class="checkout">
+		<h1 class="checkout__title">checkout</h1>
+		<h2 class="checkout__sub-title">billing details</h2>
 
-	<label class="checkout__name checkout--left">
-		Name
-		<input type="text" placeholder="Alexei Ward" />
-	</label>
-
-	<label class="checkout__email checkout--right">
-		Email Address
-		<input type="email" placeholder="alexei@mail.com" />
-	</label>
-
-	<label class="checkout__name checkout--left">
-		Phone Number
-		<input type="tel" placeholder="+1202-555-0136" />
-	</label>
-
-	<h2 class="checkout__sub-title">shipping info</h2>
-
-	<label class="checkout--span-2">
-		Address
-		<input type="text" placeholder="1137 Williams Avenue" />
-	</label>
-
-	<label class="checkout__zip-code checkout--left">
-		ZIP Code
-		<input type="text" placeholder="10001" />
-	</label>
-
-	<label class="checkout__zip-code checkout--right">
-		City
-		<input type="text" placeholder="New York" />
-	</label>
-
-	<label class="checkout__zip-code checkout--left">
-		Country
-		<input type="text" placeholder="United States" />
-	</label>
-
-	<h2 class="checkout__sub-title">payment details</h2>
-	<p class="checkout__payment__method-text checkout--left">Payment Method</p>
-
-	<div class="checkout__payment__radio checkout--right">
-		<label>
-			<input type="radio" name="payment" id="payment" />
-			e-money
+		<label class="checkout__name checkout--left">
+			Name
+			<input type="text" placeholder="Alexei Ward" />
 		</label>
-		<label>
-			<input type="radio" name="payment" id="payment" />
-			Cash on Delivery
+
+		<label class="checkout__email checkout--right">
+			Email Address
+			<input type="email" placeholder="alexei@mail.com" />
 		</label>
-	</div>
 
-	<label class="checkout__e-money-number checkout--left">
-		e-Money Number
-		<input type="text" placeholder="238521993" />
-	</label>
+		<label class="checkout__name checkout--left">
+			Phone Number
+			<input type="tel" placeholder="+1202-555-0136" />
+		</label>
 
-	<label class="checkout__e-money-pin checkout--right">
-		e-Money PIN
-		<input type="text" placeholder="6891" />
-	</label>
-</section>
+		<h2 class="checkout__sub-title">shipping info</h2>
 
-<section class="summary">
-	<h2>summary</h2>
-	<ul>
-		{#each $CartStore as item}
-			<li class="cart__item">
-				<div>
-					<img src={'/assets/cart/' + item.image} alt="" />
-				</div>
-				<div>
-					<div class="cart__item__name">
-						{item.item}
+		<label class="checkout--span-2">
+			Address
+			<input type="text" placeholder="1137 Williams Avenue" />
+		</label>
+
+		<label class="checkout__zip-code checkout--left">
+			ZIP Code
+			<input type="text" placeholder="10001" />
+		</label>
+
+		<label class="checkout__zip-code checkout--right">
+			City
+			<input type="text" placeholder="New York" />
+		</label>
+
+		<label class="checkout__zip-code checkout--left">
+			Country
+			<input type="text" placeholder="United States" />
+		</label>
+
+		<h2 class="checkout__sub-title">payment details</h2>
+		<p class="checkout__payment__method-text checkout--left">Payment Method</p>
+
+		<div class="checkout__payment__radio checkout--right">
+			<label>
+				<input type="radio" name="payment" id="payment" />
+				e-money
+			</label>
+			<label>
+				<input type="radio" name="payment" id="payment" />
+				Cash on Delivery
+			</label>
+		</div>
+
+		<label class="checkout__e-money-number checkout--left">
+			e-Money Number
+			<input type="text" placeholder="238521993" />
+		</label>
+
+		<label class="checkout__e-money-pin checkout--right">
+			e-Money PIN
+			<input type="text" placeholder="6891" />
+		</label>
+	</section>
+
+	<section class="summary">
+		<h2>summary</h2>
+		<ul>
+			{#each $CartStore as item}
+				<li class="cart__item">
+					<div>
+						<img src={'/assets/cart/' + item.image} alt="" />
 					</div>
-				</div>
-			</li>
-		{/each}
-	</ul>
-	<div class="cart__item__price">
-		<div>total<span>3455</span></div>
-		<div>shipping<span>3455</span></div>
-		<div>vat(included)<span>3455</span></div>
-		<div>grand total<span>3455</span></div>
-	</div>
-</section>
+					<div>
+						<div class="cart__item__name">
+							{item.item}
+						</div>
+						<div class="cart__item__price">{numberToCurrency(item.price)}</div>
+					</div>
+					<div class="cart__item__amount">x{item.amount}</div>
+				</li>
+			{/each}
+		</ul>
+		<div class="cart__item__price">
+			<div>
+				total<span
+					>{numberToCurrency(
+						$CartStore.reduce((total, current) => total + current.price * current.amount, 0)
+					)}</span
+				>
+			</div>
+			<div>shipping<span>$50</span></div>
+			<div>
+				vat(included)<span
+					>{numberToCurrency(
+						Math.round(
+							$CartStore.reduce((total, current) => total + current.price * current.amount, 0) * 0.2
+						)
+					)}</span
+				>
+			</div>
+			<div class="cart__item__price__grand-total">
+				grand total<span
+					>{numberToCurrency(
+						Math.round(
+							$CartStore.reduce((total, current) => total + current.price * current.amount, 0) + 50
+						)
+					)}</span
+				>
+			</div>
+		</div>
+		<Button version={1} wide={true} text={'continue & pay'} on:click={handleCheckoutClick} />
+	</section>
+</div>
 
 <style>
+	.checkout-wrap {
+		background-color: #f2f2f2;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		/* justify-content: space-between; */
+		/* justify-items: center; */
+		/* align-items: flex-start; */
+		padding: 2rem;
+	}
 	section {
-		border: thin solid black;
+		/* border: thin solid black; */
+		background-color: #ffffff;
+		border-radius: 8px;
 	}
 	.checkout {
-		border: thin solid black;
+		/* border: thin solid black; */
 		width: 730px;
-		margin-inline: auto;
+		margin-inline: 2rem;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		padding: 2rem;
@@ -167,18 +208,28 @@
 	}
 
 	.summary {
-		width: 612px;
+		/* width: 612px; */
+		min-width: 300px;
+		padding: 2rem;
+		margin-top: 5rem;
+		height: min-content;
+	}
+	.summary h2 {
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 25px;
+		letter-spacing: 1.28571px;
+		text-transform: uppercase;
+		color: #000000;
+		margin-bottom: 2rem;
 	}
 	span {
 		margin-left: auto;
 		font-weight: 700;
 		font-size: 18px;
 		line-height: 25px;
-		/* identical to box height */
-
 		text-align: right;
 		text-transform: uppercase;
-
 		color: #000000;
 	}
 	.cart__item {
@@ -193,6 +244,7 @@
 		width: 64px;
 		height: 64px;
 		object-fit: contain;
+		border-radius: 8px;
 	}
 	.cart__item__name {
 		font-weight: 700;
@@ -202,15 +254,29 @@
 	}
 	.cart__item__price {
 		width: 100%;
-		/* display: flex; */
-		/* flex-direction: column; */
+		text-transform: uppercase;
+		display: grid;
+		gap: 0.5rem;
 		font-weight: 700;
 		font-size: 14px;
 		line-height: 25px;
 		color: rgba(0, 0, 0, 0.5);
 		font-weight: 500;
+		margin-bottom: 2rem;
+	}
+	.cart__item__amount {
+		margin-left: auto;
+		font-weight: 700;
+		font-size: 15px;
+		color: rgba(0, 0, 0, 0.5);
 	}
 	.cart__item__price > * {
 		display: flex;
+	}
+	.cart__item__price__grand-total {
+		margin-top: 1rem;
+	}
+	.cart__item__price__grand-total span {
+		color: var(--primary);
 	}
 </style>

@@ -3,6 +3,8 @@
 // and what to do when importing types
 declare global {
 	namespace App {
+
+
 		// interface Error {}
 		// interface Locals {}
 		// interface PageData {}
@@ -10,4 +12,4 @@ declare global {
 	}
 }
 
-export {};
+export { };
