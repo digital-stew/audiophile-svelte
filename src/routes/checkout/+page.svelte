@@ -1,50 +1,93 @@
 <script lang="ts">
+	// import { error } from '@sveltejs/kit';
 	import CartStore from '$lib/cart';
 	import numberToCurrency from '$lib/numberToCurrency';
 	import Button from '$lib/Button.svelte';
-	function handleCheckoutClick() {}
+	import SuccessfulOrder from '$lib/SuccessfulOrder.svelte';
+	import type ApiResponse from '$types/ApiResponse';
+
+	// import Error from './+error.svelte';
+
+	async function submitForm(e: SubmitEvent) {
+		const form = e.target as HTMLFormElement;
+		const formData = new FormData(form);
+
+		const itemList = $CartStore.map((item) => {
+			return { id: item.id, amount: item.amount };
+		});
+		formData.append('list', JSON.stringify(itemList));
+		const res = await fetch('/api/purchase', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(Object.fromEntries(formData.entries()))
+		});
+		try {
+			const data: ApiResponse = await res.json();
+			if (res.status !== 200) throw 'ERROR! \nthe server did not respond as expected';
+
+			if (data.complete !== true) throw 'transaction not complete';
+			totalPrice = data.price;
+			showSuccess = true;
+		} catch (error) {
+			console.error(error);
+			alert(error);
+		}
+	}
+	export let totalPrice = 0;
+	let paymentMethod = '';
+	function click() {
+		showSuccess = true;
+	}
+	export let showSuccess = false;
+	function closeModal() {
+		showSuccess = false;
+	}
 </script>
 
-<div class="checkout-wrap">
+<SuccessfulOrder show={showSuccess} {closeModal} {totalPrice} />
+
+<form class="checkout-wrap" on:submit|preventDefault={submitForm}>
 	<section class="checkout">
 		<h1 class="checkout__title">checkout</h1>
 		<h2 class="checkout__sub-title">billing details</h2>
 
 		<label class="checkout__name checkout--left">
 			Name
-			<input type="text" placeholder="Alexei Ward" />
+			<input type="text" name="name" required={false} placeholder="Alexei Ward" />
 		</label>
 
 		<label class="checkout__email checkout--right">
 			Email Address
-			<input type="email" placeholder="alexei@mail.com" />
+			<input type="email" name="email" required={false} placeholder="alexei@mail.com" />
 		</label>
 
 		<label class="checkout__name checkout--left">
 			Phone Number
-			<input type="tel" placeholder="+1202-555-0136" />
+			<input type="tel" name="phone" required={false} placeholder="+1202-555-0136" />
 		</label>
 
 		<h2 class="checkout__sub-title">shipping info</h2>
 
 		<label class="checkout--span-2">
 			Address
-			<input type="text" placeholder="1137 Williams Avenue" />
+			<input type="text" name="address" required={false} placeholder="1137 Williams Avenue" />
 		</label>
 
 		<label class="checkout__zip-code checkout--left">
 			ZIP Code
-			<input type="text" placeholder="10001" />
+			<input type="text" name="zip" required={false} placeholder="10001" />
 		</label>
 
-		<label class="checkout__zip-code checkout--right">
+		<label class="checkout__city checkout--right">
 			City
-			<input type="text" placeholder="New York" />
+			<input type="text" name="city" required={false} placeholder="New York" />
 		</label>
 
-		<label class="checkout__zip-code checkout--left">
+		<label class="checkout__country checkout--left">
 			Country
-			<input type="text" placeholder="United States" />
+			<input type="text" name="country" required={false} placeholder="United States" />
 		</label>
 
 		<h2 class="checkout__sub-title">payment details</h2>
@@ -52,24 +95,37 @@
 
 		<div class="checkout__payment__radio checkout--right">
 			<label>
-				<input type="radio" name="payment" id="payment" />
+				<input
+					type="radio"
+					name="payment"
+					value="eMoney"
+					required={false}
+					bind:group={paymentMethod}
+				/>
 				e-money
 			</label>
 			<label>
-				<input type="radio" name="payment" id="payment" />
+				<input
+					type="radio"
+					name="payment"
+					value="cod"
+					required={false}
+					bind:group={paymentMethod}
+				/>
 				Cash on Delivery
 			</label>
 		</div>
+		{#if paymentMethod === 'eMoney'}
+			<label class="checkout__e-money-number checkout--left">
+				e-Money Number
+				<input type="text" name="eMoneyNumber" required={false} placeholder="238521993" />
+			</label>
 
-		<label class="checkout__e-money-number checkout--left">
-			e-Money Number
-			<input type="text" placeholder="238521993" />
-		</label>
-
-		<label class="checkout__e-money-pin checkout--right">
-			e-Money PIN
-			<input type="text" placeholder="6891" />
-		</label>
+			<label class="checkout__e-money-pin checkout--right">
+				e-Money PIN
+				<input type="text" name="eMoneyPin" required={false} placeholder="6891" />
+			</label>
+		{/if}
 	</section>
 
 	<section class="summary">
@@ -118,9 +174,9 @@
 				>
 			</div>
 		</div>
-		<Button version={1} wide={true} text={'continue & pay'} on:click={handleCheckoutClick} />
+		<Button version={1} wide={true} text={'continue & pay'} />
 	</section>
-</div>
+</form>
 
 <style>
 	.checkout-wrap {
@@ -128,20 +184,17 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		/* justify-content: space-between; */
-		/* justify-items: center; */
-		/* align-items: flex-start; */
 		padding: 2rem;
+		padding-bottom: 15rem;
 	}
-	section {
-		/* border: thin solid black; */
+	.checkout,
+	.summary {
 		background-color: #ffffff;
 		border-radius: 8px;
 	}
 	.checkout {
-		/* border: thin solid black; */
-		width: 730px;
-		margin-inline: 2rem;
+		max-width: 730px;
+		margin-right: 1rem;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		padding: 2rem;
@@ -158,7 +211,7 @@
 		height: 56px;
 	}
 	input:not(.checkout__payment__radio input) {
-		width: 309px;
+		max-width: 309px;
 		height: 56px;
 		background: #ffffff;
 		border: 1px solid #cfcfcf;
@@ -201,14 +254,11 @@
 		border-radius: 8px;
 		gap: 1rem;
 		padding-inline: 1rem;
-
 		width: 309px;
 		height: 56px;
 		border: thin solid rgba(0, 0, 0, 0.4);
 	}
-
 	.summary {
-		/* width: 612px; */
 		min-width: 300px;
 		padding: 2rem;
 		margin-top: 5rem;
@@ -278,5 +328,20 @@
 	}
 	.cart__item__price__grand-total span {
 		color: var(--primary);
+	}
+	@media (max-width: 768px) {
+		.checkout {
+			grid-template-columns: 1fr;
+		}
+		.checkout > * {
+			grid-column: 1/2;
+		}
+	}
+	@media (max-width: 480px) {
+		label,
+		.checkout__payment__radio,
+		.checkout__payment__radio label {
+			width: 100%;
+		}
 	}
 </style>

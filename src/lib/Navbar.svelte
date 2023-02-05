@@ -23,7 +23,8 @@
 		<img src={hamburgerIcon} alt="logo" />
 	</button>
 	<div><img src={logo} alt="logo" /></div>
-	<div class="nav__links" class:nav__links--show={showLinks}>
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<div class="nav__links" class:nav__links--show={showLinks} on:click={() => (showLinks = false)}>
 		<NavLinks />
 	</div>
 	<button class="nav__shopping-cart" on:click={openModal}>
@@ -31,7 +32,7 @@
 	>
 </nav>
 
-<Cart {closeModal} {showCart} on:click={closeModal} />
+<Cart {closeModal} {showCart} />
 
 <style>
 	nav {

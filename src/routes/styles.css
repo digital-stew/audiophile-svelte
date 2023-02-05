@@ -20,10 +20,10 @@ main {
 	display: grid;
 	gap: 10rem;
 }
-footer {
-	margin-top: 10rem;
-}
 
 section:first-child:not(.hero) {
 	margin-top: 5rem;
+}
+section:last-child {
+	margin-bottom: 5rem;
 }

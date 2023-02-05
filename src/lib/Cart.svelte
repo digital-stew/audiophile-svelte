@@ -10,15 +10,17 @@
 	);
 	export let closeModal: () => void;
 	function handleCheckoutClick() {
+		if ($CartStore.length < 1) return;
 		closeModal();
 		goto('/checkout');
 	}
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="backdrop" data-open={showCart} on:click|self>
+<div class="backdrop" data-open={showCart} on:click|self={closeModal}>
 	<div class="cart" data-open={showCart}>
 		<div class="cart__header">
+			<button class="cart__close__button" on:click={closeModal}>X</button>
 			<h2>cart({$CartStore.length})</h2>
 			<button on:click={removeAll}>remove all</button>
 		</div>
@@ -54,9 +56,6 @@
 
 <!-- <button on:click={click}>click</button> -->
 <style>
-	*[data-open='false'] {
-		display: none;
-	}
 	.backdrop {
 		background-color: rgba(0, 0, 0, 0.5);
 		position: fixed;
@@ -158,6 +157,11 @@
 		font-size: 18px;
 		color: #000000;
 	}
+	.cart__close__button {
+		position: absolute;
+		top: 0.3rem;
+		right: 0.5rem;
+	}
 	@media (max-width: 768px) {
 		.cart {
 			top: 0;
@@ -165,5 +169,8 @@
 			right: 0;
 			margin: 1rem;
 		}
+	}
+	*[data-open='false'] {
+		display: none;
 	}
 </style>
