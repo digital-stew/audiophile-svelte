@@ -9,11 +9,12 @@ interface IItem {
 }
 
 export function decrementProductCount(id: number) {
+
     CartStore.update((current) => {
         return current.map((item) => {
             if (item.id === id) {
                 if (item.amount === 1) {
-                    removeItem(id)
+                    //remove item from array
                     return item;
                 }
                 return { ...item, amount: item.amount - 1 };
@@ -37,7 +38,19 @@ export function incrementProductCount(id: number) {
 }
 
 export function addCartItem(input: IItem) {
-    CartStore.update((old) => [...old, { ...input }]);
+    CartStore.update((old) => {
+        //if user adds a duplicate item
+        if (old.find((old) => old.id === input.id)) {
+            return old.map((item) => {
+                if (item.id === input.id) {
+                    return { ...item, amount: item.amount + 1 * input.amount };
+                } else {
+                    return item;
+                }
+            });
+        }
+        else return [...old, { ...input }]
+    });
 }
 
 function removeItem(id: number) {

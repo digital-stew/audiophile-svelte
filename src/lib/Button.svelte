@@ -26,6 +26,9 @@
 		text-transform: uppercase;
 		transition: all 200ms ease-in-out;
 	}
+	.btn:active {
+		scale: 0.9;
+	}
 	.btn1 {
 		background-color: var(--primary);
 		color: white;
