@@ -22,10 +22,10 @@ module.exports = {
     deploy: {
         production: {
             user: 'deployer', // deployer user
-            host: 'IP_ADDRESS', // IP address of your server
+            host: '127.0.0.1', // IP address of your server
             ref: 'origin/main', // the branch you want to deploy
             repo: 'git@your-repo-url.git', // the ssh git clone URL
-            path: '/var/www/website.com/', // the path where you want the project to be
+            path: '/var/node/audiophile-svelte', // the path where you want the project to be
             // code you want to run after the project has been pushed to your server
             'post-deploy':
                 'npm install && npm run build && pm2 reload ecosystem.config.js --env production'
