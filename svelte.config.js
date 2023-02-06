@@ -9,6 +9,9 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
+		paths: {
+			base: "/audiophile"
+		},
 		alias: { $types: path.resolve('./types/') },
 		adapter: adapter()
 	}
