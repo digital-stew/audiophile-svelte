@@ -10,7 +10,8 @@ const config = {
 
 	kit: {
 		paths: {
-			base: "/audiophile"
+			// base: "/audiophile",
+			// assets: "https://tux-systems.co.uk/audiophile"
 		},
 		alias: { $types: path.resolve('./types/') },
 		adapter: adapter()
