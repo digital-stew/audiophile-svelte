@@ -55,39 +55,39 @@
 
 		<label class="checkout__name checkout--left">
 			Name
-			<input type="text" name="name" required={false} placeholder="Alexei Ward" />
+			<input type="text" name="name" required placeholder="Alexei Ward" />
 		</label>
 
 		<label class="checkout__email checkout--right">
 			Email Address
-			<input type="email" name="email" required={false} placeholder="alexei@mail.com" />
+			<input type="email" name="email" required placeholder="alexei@mail.com" />
 		</label>
 
 		<label class="checkout__name checkout--left">
 			Phone Number
-			<input type="tel" name="phone" required={false} placeholder="+1202-555-0136" />
+			<input type="tel" name="phone" required placeholder="+1202-555-0136" />
 		</label>
 
 		<h2 class="checkout__sub-title">shipping info</h2>
 
 		<label class="checkout--span-2">
 			Address
-			<input type="text" name="address" required={false} placeholder="1137 Williams Avenue" />
+			<input type="text" name="address" required placeholder="1137 Williams Avenue" />
 		</label>
 
 		<label class="checkout__zip-code checkout--left">
 			ZIP Code
-			<input type="text" name="zip" required={false} placeholder="10001" />
+			<input type="text" name="zip" required placeholder="10001" />
 		</label>
 
 		<label class="checkout__city checkout--right">
 			City
-			<input type="text" name="city" required={false} placeholder="New York" />
+			<input type="text" name="city" required placeholder="New York" />
 		</label>
 
 		<label class="checkout__country checkout--left">
 			Country
-			<input type="text" name="country" required={false} placeholder="United States" />
+			<input type="text" name="country" required placeholder="United States" />
 		</label>
 
 		<h2 class="checkout__sub-title">payment details</h2>
@@ -95,35 +95,23 @@
 
 		<div class="checkout__payment__radio checkout--right">
 			<label>
-				<input
-					type="radio"
-					name="payment"
-					value="eMoney"
-					required={false}
-					bind:group={paymentMethod}
-				/>
+				<input type="radio" name="payment" value="eMoney" required bind:group={paymentMethod} />
 				e-money
 			</label>
 			<label>
-				<input
-					type="radio"
-					name="payment"
-					value="cod"
-					required={false}
-					bind:group={paymentMethod}
-				/>
+				<input type="radio" name="payment" value="cod" required bind:group={paymentMethod} />
 				Cash on Delivery
 			</label>
 		</div>
 		{#if paymentMethod === 'eMoney'}
 			<label class="checkout__e-money-number checkout--left">
 				e-Money Number
-				<input type="text" name="eMoneyNumber" required={false} placeholder="238521993" />
+				<input type="text" name="eMoneyNumber" required placeholder="238521993" />
 			</label>
 
 			<label class="checkout__e-money-pin checkout--right">
 				e-Money PIN
-				<input type="text" name="eMoneyPin" required={false} placeholder="6891" />
+				<input type="text" name="eMoneyPin" required placeholder="6891" />
 			</label>
 		{/if}
 	</section>
